@@ -1,4 +1,29 @@
 import { useEffect, useRef, useState } from 'react'
+import {
+  Clock,
+  AlertTriangle,
+  FileSpreadsheet,
+  ShieldAlert,
+  Fingerprint,
+  CreditCard,
+  Building2,
+  FileSignature,
+  ShieldCheck,
+  History,
+  Store,
+  Coins,
+  Shield,
+  Handshake,
+  Zap,
+  Lock,
+  ClipboardCheck,
+  LayoutDashboard,
+  LifeBuoy,
+  Search,
+  Check,
+  Star,
+  ChevronDown,
+} from 'lucide-react'
 import './App.css'
 
 const NAV = [
@@ -18,36 +43,20 @@ const STATS = [
   { to: 500, suffix: '+', label: 'Retailers onboarded' },
 ]
 
-const svg = (d) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    {d}
-  </svg>
-)
-
 const PROBLEMS = [
-  ['Slow onboarding', 'Document checks take hours and customers drop off.',
-    svg(<><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>)],
-  ['Fraud risk', 'Fake IDs and mismatched details slip through.',
-    svg(<><path d="M12 3l9 16H3z" /><path d="M12 10v4M12 17h.01" /></>)],
-  ['Messy records', 'Paper files and scattered spreadsheets make audits painful.',
-    svg(<><path d="M6 3h8l4 4v14H6z" /><path d="M14 3v4h4M9 12h6M9 16h6" /></>)],
-  ['Compliance pressure', 'Missing consent trails can create legal trouble.',
-    svg(<><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z" /><path d="M12 9v4M12 16h.01" /></>)],
+  ['Slow onboarding', 'Document checks take hours and customers drop off.', <Clock size={26} />],
+  ['Fraud risk', 'Fake IDs and mismatched details slip through.', <AlertTriangle size={26} />],
+  ['Messy records', 'Paper files and scattered spreadsheets make audits painful.', <FileSpreadsheet size={26} />],
+  ['Compliance pressure', 'Missing consent trails can create legal trouble.', <ShieldAlert size={26} />],
 ]
 
 const SERVICES = [
-  ['Aadhaar Verification', "Confirms identity through OTP-based Aadhaar authentication with the customer's consent.",
-    svg(<><rect x="3" y="5" width="18" height="14" rx="2" /><circle cx="9" cy="11" r="2" /><path d="M6 16c.5-1.5 5.5-1.5 6 0M14 10h4M14 14h3" /></>)],
-  ['PAN Verification', "Validates a PAN number and checks the holder's name instantly.",
-    svg(<><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 9h6M7 13h10M7 16h4" /></>)],
-  ['Bank Penny Drop', 'Sends a small test credit to verify the account number, IFSC and account holder name.',
-    svg(<path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18" />)],
-  ['Consent & eSign', 'Captures explicit customer consent and legally valid digital signatures.',
-    svg(<><path d="M4 20h16M5 16l9-9 3 3-9 9H5z" /><path d="M13 8l3 3" /></>)],
-  ['Complete KYC', 'Runs Aadhaar, PAN, bank and consent in a single guided flow.',
-    svg(<><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z" /><path d="M8.5 12l2.5 2.5L15.5 10" /></>)],
-  ['Verification History', 'Stores every result with date, status and reference for easy lookup.',
-    svg(<><path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5M12 8v4l3 2" /></>)],
+  ['Aadhaar Verification', "Confirms identity through OTP-based Aadhaar authentication with the customer's consent.", <Fingerprint size={26} />],
+  ['PAN Verification', "Validates a PAN number and checks the holder's name instantly.", <CreditCard size={26} />],
+  ['Bank Penny Drop', 'Sends a small test credit to verify the account number, IFSC and account holder name.', <Building2 size={26} />],
+  ['Consent & eSign', 'Captures explicit customer consent and legally valid digital signatures.', <FileSignature size={26} />],
+  ['Complete KYC', 'Runs Aadhaar, PAN, bank and consent in a single guided flow.', <ShieldCheck size={26} />],
+  ['Verification History', 'Stores every result with date, status and reference for easy lookup.', <History size={26} />],
 ]
 
 const STEPS = [
@@ -57,19 +66,19 @@ const STEPS = [
 ]
 
 const AUDIENCE = [
-  ['🏪', 'Retail & distribution partners', 'Verify customers at the point of sale.'],
-  ['💰', 'Fintech & lending companies', 'Cut onboarding time and defaults.'],
-  ['🛡️', 'Insurance & investment agents', 'Complete KYC without paperwork.'],
-  ['🤝', 'Service providers & agencies', 'Verify vendors, staff and clients with confidence.'],
+  [<Store size={26} />, 'Retail & distribution partners', 'Verify customers at the point of sale.'],
+  [<Coins size={26} />, 'Fintech & lending companies', 'Cut onboarding time and defaults.'],
+  [<Shield size={26} />, 'Insurance & investment agents', 'Complete KYC without paperwork.'],
+  [<Handshake size={26} />, 'Service providers & agencies', 'Verify vendors, staff and clients with confidence.'],
 ]
 
 const WHY = [
-  ['⚡', 'Lightning fast', 'Most verifications finish in under 3 seconds.'],
-  ['🔒', 'Secure by design', 'Encrypted data, role-based access and consent for every check.'],
-  ['💳', 'Pay as you use', 'Prepaid wallet with no lock-in.'],
-  ['📋', 'Audit-ready', 'A complete, searchable trail for every verification.'],
-  ['🖥️', 'Clean dashboard', 'Easy to use, with light and dark mode.'],
-  ['🛟', 'Reliable support', 'Help is a message away when you need it.'],
+  [<Zap size={22} />, 'Lightning fast', 'Most verifications finish in under 3 seconds.'],
+  [<Lock size={22} />, 'Secure by design', 'Encrypted data, role-based access and consent for every check.'],
+  [<CreditCard size={22} />, 'Pay as you use', 'Prepaid wallet with no lock-in.'],
+  [<ClipboardCheck size={22} />, 'Audit-ready', 'A complete, searchable trail for every verification.'],
+  [<LayoutDashboard size={22} />, 'Clean dashboard', 'Easy to use, with light and dark mode.'],
+  [<LifeBuoy size={22} />, 'Reliable support', 'Help is a message away when you need it.'],
 ]
 
 const SECURITY = [
@@ -399,8 +408,10 @@ function How() {
           {STEPS.map(([t, d], i) => (
             <Reveal key={t} delay={i * 150} className="step">
               <div className="num">{i + 1}</div>
-              <h3>{t}</h3>
-              <p>{d}</p>
+              <div className="step-body">
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </div>
             </Reveal>
           ))}
         </div>
