@@ -1,0 +1,27 @@
+:root {
+  --navy: #103b78;
+  --navy-dark: #0a2a57;
+  --green: #35b92c;
+  --green-dark: #2a9b22;
+  --bg: #ffffff;
+  --alt: #f3f7fc;
+  --text: #1c2b45;
+  --muted: #5b6b85;
+  --line: #e1e8f2;
+  scroll-behavior: smooth;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; cursor: pointer; }
